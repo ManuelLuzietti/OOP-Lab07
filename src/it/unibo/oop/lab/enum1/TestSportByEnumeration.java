@@ -1,5 +1,9 @@
 package it.unibo.oop.lab.enum1;
 
+
+//import it.unibo.oop.lab.nesting1.SportSocialNetworkUserImpl;
+import it.unibo.oop.lab.socialnetwork.User;
+
 /**
  * This is going to act as a test for
  * {@link it.unibo.oop.lab.enum1.SportSocialNetworkUserImpl}
@@ -25,5 +29,49 @@ public final class TestSportByEnumeration {
          * By now, you know how to do it
          */
         // TODO
+//    	SportSocialNetworkUserImpl<User> user1 = new SportSocialNetworkUserImpl<>("bello", "cool", "1");
+//    	SportSocialNetworkUserImpl<User> user2 = new SportSocialNetworkUserImpl<>("brutto", "ugly", "2");
+//    	SportSocialNetworkUserImpl<User> user3 = new SportSocialNetworkUserImpl<>("bho", "caso", "3");
+//    	user1.addSport(Sport.BASKET);
+//    	user1.addSport(Sport.F1);
+//    	user1.addSport(Sport.SOCCER);
+    	final SportSocialNetworkUserImpl<User> dcassani = new SportSocialNetworkUserImpl<>("Davide Cassani", "dcassani", "53");
+        final SportSocialNetworkUserImpl<User> becclestone = new SportSocialNetworkUserImpl<>("Bernie Ecclestone", "becclestone", "83");
+        final SportSocialNetworkUserImpl<User> falonso = new SportSocialNetworkUserImpl<>("Fernando Alonso", "falonso", "34");
+
+        /*
+         * TODO: alonso is a fan of soccer and bike and practices F1: 
+         * add these sports to Alonso
+         * 
+         * falonso.addSport(SportSocialNetworkUserImpl.F1);
+         * 
+         * ...
+         */
+        falonso.addSport(it.unibo.oop.lab.enum1.Sport.F1);
+        falonso.addSport(it.unibo.oop.lab.enum1.Sport.SOCCER);
+        falonso.addSport(it.unibo.oop.lab.enum1.Sport.BIKE);
+        
+        System.out.println("Alonso practices F1: " + falonso.hasSport(it.unibo.oop.lab.enum1.Sport.F1));
+        System.out.println("Alonso does not like volley: " + !falonso.hasSport(it.unibo.oop.lab.enum1.Sport.VOLLEY));
+        /*
+         * Cassani practiced bike and loves F1 and MotoGP
+         */
+        dcassani.addSport(it.unibo.oop.lab.enum1.Sport.BIKE);
+        dcassani.addSport(it.unibo.oop.lab.enum1.Sport.F1);
+        dcassani.addSport(it.unibo.oop.lab.enum1.Sport.MOTOGP);
+        System.out.println("Cassani has been a professional biker: "
+                + dcassani.hasSport(it.unibo.oop.lab.enum1.Sport.BIKE));
+        System.out.println("Cassani does not like soccer: " + !dcassani.hasSport(it.unibo.oop.lab.enum1.Sport.SOCCER));
+        /**
+         * Ecclestone is the de-facto owner of F1 but also a fan of basket.
+         */
+        becclestone.addSport(it.unibo.oop.lab.enum1.Sport.F1);
+        becclestone.addSport(it.unibo.oop.lab.enum1.Sport.BASKET);
+        System.out.println("Bernie's the boss when it comes to F1: "
+                + becclestone.hasSport(it.unibo.oop.lab.enum1.Sport.F1));
+        System.out.println("Bernie does love playing also basket: "
+                + becclestone.hasSport(it.unibo.oop.lab.enum1.Sport.BASKET));
     }
-}
+
+    }
+
