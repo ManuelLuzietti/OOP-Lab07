@@ -53,12 +53,12 @@ public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUse
      * TODO: initialize properly these sports
      */
     static {
-        SOCCER = null;
-        F1 = null;
-        MOTOGP = null;
-        VOLLEY = null;
-        BASKET = null;
-        BIKE = null;
+        SOCCER = new Sport("Soccer");
+        F1 = new Sport("F1");
+        MOTOGP = new Sport("MotoGP");
+        VOLLEY = new Sport("Volley");
+        BASKET = new Sport("Basket");
+        BIKE = new Sport("Bike");
     }
 
     /**
@@ -114,7 +114,9 @@ public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUse
      */
     // TODO
     public void addSport(final Sport sport) {
-
+    	if(!this.hasSport(sport)) {
+        	this.sports.add(sport);
+    	}
     }
 
     /**
@@ -126,7 +128,12 @@ public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUse
      */
     // TODO
     public boolean hasSport(final Sport s) {
-        return false;
+    	for(Sport t: this.sports) {
+    		if(t.equals(s)) {
+    			return true;
+    		}
+    	}
+    	return false;
     }
 
     /*
@@ -135,6 +142,13 @@ public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUse
      * Complete the definition of this static inner class defining a Sport along
      * with its bare name.
      */
+    
+    /**
+     * 
+     * Nested class Sport
+     * 
+     *
+     */
     public static final class Sport {
         /*
          * TODO
@@ -142,9 +156,54 @@ public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUse
          * Redefine equals so that two sports are equal only if they feature the
          * very same name. Remember that you must also redefine hashCode()!
          */
-        @Override
-        public boolean equals(final Object o) {
-            return false;
-        }
+    	/**
+    	 * main field of the class Sport
+    	 */
+    	private String name;
+       
+    	/**
+    	 * initialize the class with name as null
+    	 */
+    	public Sport() {
+    		this.name = null;
+    	}
+    	
+    	/** 
+    	 * 
+    	 * @param name
+    	 * initialize the class with name as 'name'
+    	 */
+    	public Sport(final String name) {
+    		this.name = name;
+    	}
+    	/**
+    	 * overrided method hashCode based on name field
+    	 */
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((name == null) ? 0 : name.hashCode());
+			return result;
+		}
+	
+		/**
+		 * overrided method equals based on name field
+		 */
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Sport other = (Sport) obj;
+			if (name == null) {
+				if (other.name != null)
+					return false;
+			} else if (!name.equals(other.name))
+				return false;
+			return true;
+		}
+        
     }
 }
