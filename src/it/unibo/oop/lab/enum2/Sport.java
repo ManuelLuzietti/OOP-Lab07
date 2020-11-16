@@ -3,6 +3,7 @@
  */
 package it.unibo.oop.lab.enum2;
 
+
 /**
  * Represents an enumeration for declaring sports.
  * 
@@ -37,6 +38,13 @@ public enum Sport {
      * - soccer
      * 
      */
+	BASKET(Place.INDOOR, 5, "Basket"), 
+	VOLLEY(Place.INDOOR, 5, "Volley"),
+	TENNIS(Place.OUTDOOR, 1, "Tennis"),
+	BIKE(Place.OUTDOOR, 1, "Bike"),
+	F1(Place.OUTDOOR, 1, "F1"),
+	MOTOGP(Place.OUTDOOR, 1, "MotoGP"),
+	SOCCER(Place.OUTDOOR, 11, "Soccer");
 
     /*
      * TODO
@@ -45,7 +53,9 @@ public enum Sport {
      * 
      * Declare required fields
      */
-
+	private Place place;
+	private int	noTeamMembers;
+	private String actualName;
     /*
      * TODO
      * 
@@ -55,7 +65,12 @@ public enum Sport {
      * 
      * - Sport(final Place place, final int noTeamMembers, final String actualName)
      */
-
+	private Sport(final Place place, final int noTeamMembers, final String actualName){
+		this.place = place;
+		this.noTeamMembers = noTeamMembers ; 
+		this.actualName = actualName ;
+	}
+    
     /*
      * TODO
      * 
@@ -81,4 +96,37 @@ public enum Sport {
      * 
      * Returns the string representation of a sport
      */
+	/**
+	 * 	 * @return true if called on individual sports
+	 */
+	public boolean isIndividualSport() {
+		return this.noTeamMembers == 1;
+	}
+	
+	/**
+	 * 
+	 * @return true in case the sport is practices indoor
+	 */
+	public boolean isIndoorSport() {
+		return this.place == Place.INDOOR;
+	}
+    
+	/**
+	 * 
+	 * @return the place where this sport is practiced
+	 */
+	public Place getPlace() {
+		return this.place;
+	}
+	
+	/**
+	 * @return the string representation of a sport
+	 */
+	public String toString() {
+		return "name: " + this.actualName + (this.isIndividualSport() ? " is an individual sport" : " is NOT an individual sport") + "and is performed " + this.place;
+	}
+    
+	
+    
+	
 }
